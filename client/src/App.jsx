@@ -1,23 +1,28 @@
 import React from "react";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
+import { SignIn } from "@clerk/clerk-react";
+import { Toaster } from "react-hot-toast";
+
 import Navbar from "./components/navbar";
-import { Route, Routes, useLocation } from "react-router-dom";
+import Footer from "./components/footer";
 import Home from "./pages/home";
 import Movies from "./pages/movies";
 import MovieDetails from "./pages/movieDetails";
 import SeatLayout from "./pages/seatlayout";
 import MyBooking from "./pages/mybooking";
 import Favourite from "./pages/favourite";
-import { Toaster } from "react-hot-toast";
-import Footer from "./components/footer";
 import AddShows from "./pages/Admin/Addshows";
 import Dashboard from "./pages/Admin/Dashboard";
 import ListShows from "./pages/Admin/Listshows";
 import ListBookings from "./pages/Admin/Listbookings";
 import Layout from "./pages/Admin/layout";
-import { Outlet } from "react-router-dom";
+import { useAppContext } from "./context/appcontext";
 
 const App = () => {
-  const isAdminRoute = useLocation().pathname.startsWith("/admin");
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
+  const { user, isAdmin } = useAppContext();
+
   return (
     <>
       <Toaster />
@@ -29,8 +34,27 @@ const App = () => {
         <Route path="/movies/:id/:date" element={<SeatLayout />} />
         <Route path="/my-bookings" element={<MyBooking />} />
         <Route path="/favourites" element={<Favourite />} />
-        <Route path="/admin/*" element={<Layout />}>
-          <Route index path="dashboard" element={<Dashboard />} />
+
+        <Route
+          path="/admin/*"
+          element={
+            !user ? (
+              <div className="min-h-screen flex justify-center items-center">
+                <SignIn redirectUrl="/admin/dashboard" />
+              </div>
+            ) : isAdmin === undefined ? (
+              <div className="min-h-screen flex justify-center items-center">
+                Loading...
+              </div>
+            ) : !isAdmin ? (
+              <Navigate to="/" replace />
+            ) : (
+              <Layout />
+            )
+          }
+        >
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="addshows" element={<AddShows />} />
           <Route path="listshows" element={<ListShows />} />
           <Route path="listbookings" element={<ListBookings />} />
