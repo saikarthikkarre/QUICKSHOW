@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { dummyDateTimeData, dummyShowsData } from "../assets/assets";
-import Blurcircle from "../components/BlurCircle";
+import Blurcircle from "../components/Blurcircle";
 import {Heart, StarIcon} from "lucide-react";
 import timeformat from "../lib/timeformat";
 import Dateselect from "../components/dateselect";

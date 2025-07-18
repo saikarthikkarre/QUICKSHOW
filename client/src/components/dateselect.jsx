@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import BlurCircle from "./BlurCircle";
+import BlurCircle from "./Blurcircle";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import toast from "react-hot-toast";
 import { useState } from "react";

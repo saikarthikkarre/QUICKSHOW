@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { dummyBookingData } from "../assets/assets";
-import BlurCircle from "../components/BlurCircle";
+import BlurCircle from "../components/Blurcircle";
 import formatISODate from "../lib/isoTimeformat";
 import timeformat from "../lib/timeformat";
 import { dateformat } from "../lib/dateformat";

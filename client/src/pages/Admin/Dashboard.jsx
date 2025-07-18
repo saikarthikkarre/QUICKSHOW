@@ -8,8 +8,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { dummyDashboardData } from "../../assets/assets";
 import Title from "../../components/admin/title";
-import BlurCircle from "../../components/BlurCircle";
-import {dateformat} from "../../lib/dateFormat";
+import BlurCircle from "../../components/Blurcircle";
+import { dateformat } from "../../lib/dateformat";
 
 const Dashboard = () => {
   const currency = import.meta.env.VITE_CURRENCY;

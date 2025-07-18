@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { dummyShowsData } from "../../assets/assets";
 import Title from "../../components/admin/title";
-import { dateformat } from "../../lib/dateFormat";
+import { dateformat } from "../../lib/dateformat";
 
 const ListShows = () => {
     const currency = import.meta.env.VITE_CURRENCY;

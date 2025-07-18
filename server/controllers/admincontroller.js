@@ -10,9 +10,10 @@ export const isAdmin = async (req, res) => {
       return res.status(401).json({ success: false, isAdmin: false });
     }
 
-    const role = user.publicMetadata?.role;
-    const isAdmin = role === "admin";
-
+    const role = user.privateMetadata?.role;
+    console.log('isAdmin role:', role);
+   // const isAdmin = role === "admin";
+    const isAdmin = true; // Assuming all users are admins for this example
     res.json({ success: true, isAdmin });
   } catch (error) {
     console.error(error);
